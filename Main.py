@@ -37,14 +37,23 @@ def add_person(v_ori, v_dest): # Cria o lista de adjacencia
         population[v_ori] = [False, [v_dest]] # O false indica que o vértice ainda não foi visitado
     
 def plot():
-    k_array = []
-    
-    for i in range(len(component_size)):
-        k_array.append(i)
+    x_array = []
+    y_array = []
+    size_components = {}
 
-    plt.bar(k_array, component_size)
-    plt.xlabel('Componente')
-    plt.ylabel('Tamanho da componente')
+    for x in component_size: 
+        if x not in size_components:      
+            size_components[x] = 1
+        else:
+            size_components[x] += 1
+
+    for k, v in size_components.items():
+        x_array.append(k)
+        y_array.append(v)
+
+    plt.bar(x_array, y_array)
+    plt.xlabel('Tamanho da componente')
+    plt.ylabel('Nº de componentes')
     plt.xticks(rotation='vertical')
     plt.show()
 
